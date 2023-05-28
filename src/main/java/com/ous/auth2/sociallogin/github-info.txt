@@ -1,0 +1,5 @@
+client-secret: bdf9e1c2da3127f5438acbecfcad19514ec2427a
+public link: https://github.com/apps/ous-social-login
+callback url: http://localhost:8080
+Client ID: Iv1.0260f2487b9aaa4f
+App ID: 339798
