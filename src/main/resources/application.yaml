@@ -1,3 +1,5 @@
+server:
+  port: 9090
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/customerdb
@@ -14,8 +16,9 @@ spring:
     database: postgresql
     databasePlatform: org.hibernate.dialect.PostgreSQLDialect
 
-
-
+app:
+  jwtSecret:
+    token: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
 
 
 
