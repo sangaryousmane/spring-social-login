@@ -2,7 +2,7 @@ server:
   port: 9090
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/customerdb
+    url: jdbc:postgresql://db:5432/customerdb
     username: postgres
     password: 831800
     driverClassName: org.postgresql.Driver
