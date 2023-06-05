@@ -1,3 +1,7 @@
+/**
+ * This class request for authentication by providing the email and password
+ * of the user.
+ */
 package com.ous.auth2.sociallogin.jwt.auth;
 
 import lombok.AllArgsConstructor;

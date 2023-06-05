@@ -32,22 +32,24 @@ public class AuthenticationService {
                 .roles(Roles.USER)
                 .build();
         userRepository.save(user);
-        return AuthenticationResponse.builder()
-                .token(jwtService.generateTokenWithoutExtractClaims(user))
-                .build();
+        return tokenize(user);
     }
 
     public AuthenticationResponse authenticateUser(AuthenticationRequest authResponse) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        authResponse.getEmail(),
-                        authResponse.getPassword()));
+        UsernamePasswordAuthenticationToken authentication =
+                new UsernamePasswordAuthenticationToken(authResponse.getEmail(), authResponse.getPassword());
+        authenticationManager.authenticate(authentication);
 
-        var user=userRepository.findByEmail(authResponse.getEmail())
-                .orElseThrow(()->new UsernameNotFoundException("Sorry, user email not found"));
-        return AuthenticationResponse
-                .builder()
-                .token(jwtService.generateTokenWithoutExtractClaims(user))
+        var user = userRepository.findByEmail(authResponse.getEmail())
+                .orElseThrow(() -> new UsernameNotFoundException("Sorry, user email not found"));
+        return tokenize(user);
+    }
+
+
+    // Refactors the return type of the applications
+    private AuthenticationResponse tokenize(Users users) {
+        return AuthenticationResponse.builder()
+                .token(jwtService.generateTokenWithoutExtractClaims(users))
                 .build();
     }
 }
