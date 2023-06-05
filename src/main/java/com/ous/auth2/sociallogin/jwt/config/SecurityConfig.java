@@ -18,11 +18,12 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtFilter;
     private final AuthenticationProvider authenticationProvider;
 
+    private static final String[] URLS ={"/v1/auth/**", "/actuator/**"};
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers(HttpMethod.POST,"/v1/auth/**").permitAll()
+                .requestMatchers(URLS).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()
