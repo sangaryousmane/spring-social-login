@@ -20,7 +20,9 @@ public class ApplicationConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> userRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("Sorry, user not found"));
+        return username ->
+                userRepository.findByEmail(username)
+                        .orElseThrow(() -> new UsernameNotFoundException("Sorry, user not found"));
     }
 
     @Bean
@@ -32,6 +34,7 @@ public class ApplicationConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
+
     // Provide authentication provider services
     @Bean
     public AuthenticationProvider authenticationProvider(){

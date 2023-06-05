@@ -1,5 +1,4 @@
 package com.ous.auth2.sociallogin.jwt.config;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -35,8 +34,7 @@ public class JwtService {
         return generateToken(new HashMap<>(), userDetails);
     }
     public String generateToken(
-            Map<String, Object> extractClaims,
-            UserDetails userDetails) {
+            Map<String, Object> extractClaims, UserDetails userDetails) {
         return Jwts
                 .builder()
                 .setClaims(extractClaims)
@@ -47,6 +45,9 @@ public class JwtService {
                 .compact();
     }
 
+
+    // Check if the token is valid
+    // if the subject equals the username and the token are not valid
     public boolean isTokenValid(String token, UserDetails userDetails){
         final String userEmail=extractUserEmail(token);
         return userEmail.equals(userDetails.getUsername()) && !isTokenExpired(token);
@@ -56,10 +57,13 @@ public class JwtService {
         return extractExpiration(token).before(new Date());
     }
 
+
+    // Extract the expiration date
     private Date extractExpiration(String token) {
         return extractClaims(token, Claims::getExpiration);
     }
 
+    // Extract all claims from our token
     public Claims extractAllClaims(String token) {
         return Jwts
                 .parserBuilder()
@@ -69,6 +73,8 @@ public class JwtService {
                 .getBody();
     }
 
+
+    // Sign our secret key by decoding with the hmacSha type
     private Key getSignInKey() {
         return Keys.hmacShaKeyFor(Decoders.BASE64.decode(SECRET_KEY));
     }

@@ -34,6 +34,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String jwt;
         final String userEmail;
 
+        // if the header is null or it doesn't start with the string Bearer then skip
+        // Or go to the next filter in the filter chain
         if (authHeader == null || !authHeader.startsWith("Bearer ")){
             filterChain.doFilter(request, response);
             return;
@@ -41,7 +43,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         jwt = authHeader.substring(7);
         userEmail = jwtService.extractUserEmail(jwt);
 
-        // TODO: check if the user isn't authenticated yet and authenticate if not
+        // TODO: check if the user isn't authenticated yet and authenticate  otherwise
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null){
             UserDetails userDetails=this.userDetailsService.loadUserByUsername(userEmail);
 
