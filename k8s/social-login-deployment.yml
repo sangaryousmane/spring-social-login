@@ -26,14 +26,14 @@ spec:
 
             - name: POSTGRES_USERNAME
               valueFrom:
-                configMapKeyRef:
-                  name: postgres-config
+                secretKeyRef:
+                  name: postgres-db-secret
                   key: POSTGRES_USER
 
             - name: POSTGRES_PASSWORD
               valueFrom:
-                configMapKeyRef:
-                  name: postgres-config
+                secretKeyRef:
+                  name: postgres-db-secret
                   key: POSTGRES_PASSWORD
 
             - name: DB_NAME
