@@ -1,19 +1,36 @@
-# Persistence volume
-kind: PersistentVolume
+# service
+
 apiVersion: v1
+kind: Service
 metadata:
-  name: postgresql-pv
+  name: postgres
   labels:
-    type: local
     app: postgres
 spec:
-  storageClassName: manual
-  capacity:
-    storage: 5Gi
-  accessModes:
-    - ReadWriteMany
-  hostPath:
-    path: "/mnt/data"
+  type: NodePort
+  ports:
+    - port: 5432
+  selector:
+    app: postgres
+
+---
+#---
+## Persistence volume
+#apiVersion: v1
+#kind: PersistentVolume
+#metadata:
+#  name: postgresql-pv
+#  labels:
+#    app: postgres
+#    tier: database
+#spec:
+#  storageClassName: manual
+#  capacity:
+#    storage: 5Gi
+#  accessModes:
+#    - ReadWriteOnce
+#  hostPath:
+#    path: "/mnt/data"
 
 ---
 
@@ -48,6 +65,7 @@ spec:
     metadata:
       labels:
         app: postgres
+        tier: database
     spec:
       containers:
         - name: postgres
@@ -60,23 +78,8 @@ spec:
                 name: postgres-config
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
-              name: postgredb
+              name: postgres-persistence-storage
       volumes:
-        - name: postgredb
+        - name: postgres-persistence-storage
           persistentVolumeClaim:
             claimName: postgresql-pvc
----
-# service
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: postgres
-  labels:
-    app: postgres
-spec:
-  type: NodePort
-  ports:
-    - port: 5432
-  selector:
-    app: postgres
