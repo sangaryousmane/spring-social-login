@@ -18,6 +18,7 @@ public class SocialLoginApplication {
         SpringApplication.run(SocialLoginApplication.class, args);
     }
 
+    public record  Student(String name, String email, String major){}
 
 //    @Async
 ////    @Scheduled(fixedDelayString = "PT02S", initialDelay = 1000)
