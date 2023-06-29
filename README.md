@@ -37,5 +37,5 @@ To build and run the project, follow these steps:
 * Add database "playground" to postgres 
 * Build the project: mvn clean install
 * Run the project: mvn spring-boot:run 
-
+* Please note that there is CI/CD support that build, test and deploy your docker image to docker hub for you
 -> The application will be available at http://localhost:8080.
