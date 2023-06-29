@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: social-login-app
-          image: ousmane1999/social-login-app:latest
+          image: ousmane1999/social-login:today
           ports:
             - containerPort: 9000
 
