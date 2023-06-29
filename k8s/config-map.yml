@@ -5,7 +5,7 @@ metadata:
   labels:
     app: postgres
 data:
-  DB_HOST: "postgres-0.postgres"
   POSTGRES_DB: customerdb
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: 831800
+  DB_HOST: postgres-0.postgres
