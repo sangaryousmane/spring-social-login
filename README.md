@@ -21,7 +21,8 @@ This project demonstrates the implementation of security using Spring Boot 3.0 a
 * Maven
 * PostgreSQL 13+
 * GitHub CI/CD workflows
-* Docker 
+* Docker
+* Kubernetes - create a manifest file for postgreSQL and a deployment for the application
  
 ## Getting Started
 To get started with this project, you will need to have the following installed on your local machine:
@@ -39,3 +40,4 @@ To build and run the project, follow these steps:
 * Run the project: mvn spring-boot:run 
 * Please note that there is CI/CD support that build, test and deploy your docker image to docker hub for you
 -> The application will be available at http://localhost:8080.
+* All manifest file relating to k8s can be foundin the /k8s directory. Navigate there and get some insight of the configuration
