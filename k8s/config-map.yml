@@ -8,4 +8,4 @@ data:
   POSTGRES_DB: customerdb
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: 831800
-  DB_HOST: postgres-0.postgres
+  DB_HOST: postgres

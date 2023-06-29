@@ -10,7 +10,7 @@ management:
       show-details: always
 spring:
   datasource:
-    url: jdbc:postgresql://${POSTGRES_HOSTNAME}:5432/${DB_NAME}
+    url: jdbc:postgresql://postgres:5432/${DB_NAME}
     username: ${POSTGRES_USER}
     password: ${POSTGRES_PASSWORD}
     driverClassName: org.postgresql.Driver
