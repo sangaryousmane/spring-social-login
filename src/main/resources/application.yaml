@@ -10,10 +10,13 @@ management:
       show-details: always
 spring:
   datasource:
+    driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}
-    username: ${POSTGRES_USER}
-    password: ${POSTGRES_PASSWORD}
+    username: { POSTGRES_USER }
+    password: { POSTGRES_PASSWORD }
     driverClassName: org.postgresql.Driver
+    hikari:
+      initialization-fail-timeout: 0
   jpa:
     hibernate:
       ddl-auto: create-drop
@@ -23,7 +26,6 @@ spring:
         format-sql: true
     database: postgresql
     databasePlatform: org.hibernate.dialect.PostgreSQLDialect
-
 app:
   jwtSecret:
     token: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
