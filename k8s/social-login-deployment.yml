@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: social-login-app
+spec:
+  selector:
+    matchLabels:
+      app: social-login-app
+  template:
+    metadata:
+      labels:
+        app: social-login-app
+    spec:
+      containers:
+        - name: social-login-app
+          image: ousmane1999/social-login-app:latest
+          ports:
+            - containerPort: 9000
+
+          env:
+            - name: POSTGRES_HOSTNAME
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_HOST
+                  name: postgres-config
+
+            - name: POSTGRES_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: POSTGRES_USER
+
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: POSTGRES_PASSWORD
+
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: POSTGRES_DB
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: social-login-app-svc
+spec:
+  selector:
+    app: social-login-app
+  ports:
+    - port: 80
+      targetPort: 9000

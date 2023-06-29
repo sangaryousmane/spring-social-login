@@ -10,9 +10,9 @@ management:
       show-details: always
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/customerdb
-    username: postgres
-    password: 831800
+    url: jdbc:postgresql://${POSTGRES_HOSTNAME}:5432/${DB_NAME}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
     driverClassName: org.postgresql.Driver
   jpa:
     hibernate:
